@@ -29,8 +29,8 @@ inquirer
   ])
   .then((answers) => {
     
-    console.log( answers)
     
+    //create project folders
     fs.mkdirSync( answers.namee );
     fs.mkdirSync( `${answers.namee}/src` );
     fs.mkdirSync( `${answers.namee}/src/infra` );
@@ -56,11 +56,19 @@ inquirer
     fs.mkdirSync( `${answers.namee}/src/views/style` );
     fs.mkdirSync( `${answers.namee}/src/views/ui` );
 
+       //COPY ARCHITECTURE FILE
+       fs.copyFile('architecture.dio', `${answers.namee}/architecture.dio`, (err) => {
+        if (err) throw err;
+        console.log('source.txt was copied to destination.txt');
+      });
+
+    //create project files
     const data = createFiles(answers.namee , answers.port,answers.store );
     data.forEach( dt => { 
      fs.writeFileSync( dt.name , dt.text );
     } );
 
+ 
 
 
   })
