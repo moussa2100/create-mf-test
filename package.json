@@ -1,0 +1,19 @@
+{
+  "name": "appone-create-mf",
+  "version": "1.2.0",
+  "description": "",
+  "main": "index.js",
+  "bin":{
+    "main":"index.js",
+    "create-dt":"createdt.js"
+  },
+  "type": "module",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "inquirer": "^8.2.1"
+  }
+}
