@@ -8,7 +8,7 @@ import fs from 'fs'
 
 inquirer
   .prompt([
-    /* Pass your questions in here */
+    
     {
         type:'input',
         name: 'namee',
@@ -67,9 +67,6 @@ inquirer
     data.forEach( dt => { 
      fs.writeFileSync( dt.name , dt.text );
     } );
-
- 
-
 
   })
   .catch((error) => {
