@@ -26,7 +26,7 @@ export const createFiles = (namee,port,store) => {
         text:
 `
 {
-"name": "md",
+"name": "${namee}",
 "version": "1.0.0",
 "scripts": {
   "build": "webpack --mode production",
