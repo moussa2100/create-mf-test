@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+
 import inquirer from 'inquirer';
 import {createFiles} from './config.js';
 import fs from 'fs'
@@ -51,10 +52,11 @@ inquirer
     fs.mkdirSync( `${answers.namee}/src/repository` );
 
     fs.mkdirSync( `${answers.namee}/src/views` );
-    fs.mkdirSync( `${answers.namee}/src/views/layout` );
-    fs.mkdirSync( `${answers.namee}/src/views/router` );
-    fs.mkdirSync( `${answers.namee}/src/views/style` );
-    fs.mkdirSync( `${answers.namee}/src/views/ui` );
+    fs.mkdirSync( `${answers.namee}/src/views/homePage` );
+    fs.mkdirSync( `${answers.namee}/src/views/homePage/layout` );
+    fs.mkdirSync( `${answers.namee}/src/views/homePage/router` );
+    fs.mkdirSync( `${answers.namee}/src/views/homePage/style` );
+    fs.mkdirSync( `${answers.namee}/src/views/homePage/ui` );
 
        //COPY ARCHITECTURE FILE
        fs.copyFile('architecture.dio', `${answers.namee}/architecture.dio`, (err) => {

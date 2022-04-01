@@ -1,30 +1,26 @@
-
-export const createFiles = (namee,port,store) => {
-
-  const addstoredep = ()=> {
-    if(store == 'Zustand'){
+export const createFiles = (namee, port, store) => {
+  const addstoredep = () => {
+    if (store == "Zustand") {
       return `,
-  "zustand":"^3.7.1"`
+  "zustand":"^3.7.1"`;
     }
 
-    if(store == 'Zustand-p'){
+    if (store == "Zustand-p") {
       return `,
   "zustand":"^3.7.1",
-  "zustand-persist":"^0.4.0"`
+  "zustand-persist":"^0.4.0"`;
     }
-    return '';
-  }
+    return "";
+  };
 
   const objs = [
     {
-        name: `./${namee}/src/index.js`,
-        text: 
-`import("./App");` 
+      name: `./${namee}/src/index.js`,
+      text: `import("./App");`,
     },
     {
-        name: `./${namee}/package.json`,
-        text:
-`
+      name: `./${namee}/package.json`,
+      text: `
 {
 "name": "${namee}",
 "version": "1.0.0",
@@ -63,12 +59,11 @@ export const createFiles = (namee,port,store) => {
   ${addstoredep()}
 }
 }
-`
+`,
     },
     {
-        name: `./${namee}/src/App.jsx`,
-        text: 
-`import React from "react";
+      name: `./${namee}/src/App.jsx`,
+      text: `import React from "react";
 import ReactDOM from "react-dom";
 
 import "./index.css";
@@ -86,13 +81,12 @@ return (
 
 }
 ReactDOM.render(<App />, document.getElementById("app"));
-` 
+`,
     },
 
     {
-        name: `./${namee}/src/index.css`,
-        text: 
-`body {
+      name: `./${namee}/src/index.css`,
+      text: `body {
 font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -101,13 +95,12 @@ font-size: 3rem;
 margin: auto;
 max-width: 800px;
 margin-top: 20px;
-}` 
+}`,
     },
 
     {
-        name: `./${namee}/src/index.html`,
-        text: 
-`<!DOCTYPE html>
+      name: `./${namee}/src/index.html`,
+      text: `<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -121,13 +114,12 @@ margin-top: 20px;
 </body>
 
 </html>
-` 
+`,
     },
 
     {
-        name: `./${namee}/webpack.config.js`,
-        text: 
-`const HtmlWebPackPlugin = require("html-webpack-plugin");
+      name: `./${namee}/webpack.config.js`,
+      text: `const HtmlWebPackPlugin = require("html-webpack-plugin");
 const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin");
 
 const deps = require("./package.json").dependencies;
@@ -193,24 +185,22 @@ new HtmlWebPackPlugin({
 }),
 ],
 };
-` 
+`,
     },
 
-{
-    name: `./${namee}/.babelrc`,
-    text:
-`{
+    {
+      name: `./${namee}/.babelrc`,
+      text: `{
 "presets": ["@babel/preset-react", "@babel/preset-env"],
 "plugins": [
    ["@babel/transform-runtime"]
 ]
 }
-`
-},
-{
-    name: `./${namee}/.gitignore`,
-    text:
-`# Logs
+`,
+    },
+    {
+      name: `./${namee}/.gitignore`,
+      text: `# Logs
 logs
 *.log
 npm-debug.log*
@@ -326,17 +316,14 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
-`
-},
+`,
+    },
+  ];
 
-];
-
-if(store =='Zustand'){
-  objs.push( 
-    {
-      name:`./${namee}/src/store/store.js`,
-      text:
-      `import create from 'zustand';
+  if (store == "Zustand") {
+    objs.push({
+      name: `./${namee}/src/infra/store/store.js`,
+      text: `import create from 'zustand';
 
 
       export const useStore = create( (set)=>(
@@ -347,18 +334,14 @@ if(store =='Zustand'){
       ) )
       
       
-      `
-    }
-  )
-}
+      `,
+    });
+  }
 
-if(store =='Zustand-p'){
-
-  objs.push( 
-    {
-      name:`./${namee}/src/store/store.js`,
-      text:
-      `import createStore from 'zustand'
+  if (store == "Zustand-p") {
+    objs.push({
+      name: `./${namee}/src/store/store.js`,
+      text: `import createStore from 'zustand'
       import persist from './persist'
       
       export const useStore = createStore( 
@@ -379,15 +362,12 @@ if(store =='Zustand-p'){
           )
       
        );
-      `
-    }
-  )
+      `,
+    });
 
-  objs.push( 
-    {
-      name:`./${namee}/src/store/persist.js`,
-      text:
-      `import { configurePersist } from 'zustand-persist'
+    objs.push({
+      name: `./${namee}/src/store/persist.js`,
+      text: `import { configurePersist } from 'zustand-persist'
 
 
       const { persist, purge } = configurePersist({
@@ -397,14 +377,9 @@ if(store =='Zustand-p'){
       export default persist
       export { purge }
       
-      `
-    }
-  )
+      `,
+    });
+  }
 
-}
-
-    return objs;
-
-}
-
-
+  return objs;
+};
